@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>KinderGuardianGate Pickup</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<h1>KinderGuardianGate Pickup System</h1>
+
+<form th:action="@{/verify}" method="post">
+    <label>
+        Child ID:
+        <input type="number" name="studentId" required>
+    </label>
+
+    <label>
+        Guardian IC:
+        <input type="text" name="guardianIc" required>
+    </label>
+
+    <button type="submit">Verify Pickup</button>
+</form>
+
+<div th:if="${result != null}">
+    <h2 th:text="${result}"
+        th:classappend="${result=='AUTHORIZED'} ? 'authorized' : 'unauthorized'">
+    </h2>
+</div>
+
+</body>
+</html>
