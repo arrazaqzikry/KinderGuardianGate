@@ -1,6 +1,7 @@
 package com.example.security.kinderguardiangate.controller;
 
 import com.example.security.kinderguardiangate.model.Guardian;
+import com.example.security.kinderguardiangate.model.ScanLog;
 import com.example.security.kinderguardiangate.model.Student;
 import com.example.security.kinderguardiangate.repository.GuardianRepository;
 import com.example.security.kinderguardiangate.repository.StudentRepository;
@@ -10,6 +11,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -104,22 +106,45 @@ public class GuardianController {
                 .filter(g -> g.getIcNumber().equalsIgnoreCase(icNumber))
                 .findFirst();
 
+        // Create a new scan log
+        ScanLog log = new ScanLog();
+        log.setTimestamp(LocalDateTime.now());
+
         if (guardianOpt.isPresent()) {
             Guardian guardian = guardianOpt.get();
             List<String> children = guardian.getStudents().stream()
                     .map(Student::getName)
                     .toList();
+
             response.put("status", "success");
             response.put("guardianName", guardian.getName());
             response.put("children", children);
+
+            log.setGuardian(guardian);
+            log.setStatus("AUTHORIZED");
+
+            // Correctly get the first child
+            if (!guardian.getStudents().isEmpty()) {
+                Student firstChild = guardian.getStudents().iterator().next();
+                log.setStudent(firstChild);
+            }
+
         } else {
+            // Unauthorized scan
             response.put("status", "failure");
             response.put("guardianName", icNumber);
             response.put("children", List.of());
+
+            log.setStatus("UNAUTHORIZED");
         }
+
+        // Save log to H2 database
+        scanLogRepo.save(log);
 
         return response;
     }
+
+
 
 
 }

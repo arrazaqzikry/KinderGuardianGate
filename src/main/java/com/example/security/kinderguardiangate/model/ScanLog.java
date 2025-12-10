@@ -35,4 +35,10 @@ public class ScanLog {
 
     public LocalDateTime getTimestamp() { return timestamp; }
     public void setTimestamp(LocalDateTime timestamp) { this.timestamp = timestamp; }
+
+    public String getGuardianNameFallback() {
+        if (guardian != null) return guardian.getName();
+        return "Unknown"; // or store IC number in another field if you want
+    }
+
 }

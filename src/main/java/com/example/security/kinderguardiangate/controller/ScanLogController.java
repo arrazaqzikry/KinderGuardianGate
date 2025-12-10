@@ -4,11 +4,12 @@ import com.example.security.kinderguardiangate.model.ScanLog;
 import com.example.security.kinderguardiangate.repository.ScanLogRepository;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
-@RequestMapping("/api/scanlogs")
+@RequestMapping("/api/scanlog")
 public class ScanLogController {
 
     private final ScanLogRepository logRepo;
@@ -17,16 +18,32 @@ public class ScanLogController {
         this.logRepo = logRepo;
     }
 
-    // Get all scan logs
     @GetMapping
     public List<ScanLog> getAllScanLogs() {
         return logRepo.findAll();
     }
 
-    // Create a new scan log
-    @PostMapping
-    public ScanLog createScanLog(@RequestBody ScanLog log) {
-        log.setTimestamp(LocalDateTime.now());
-        return logRepo.save(log);
+    @RestController
+    @RequestMapping("/api/pickups")
+    public class PickupController {
+
+        private final ScanLogRepository scanLogRepo;
+
+        public PickupController(ScanLogRepository scanLogRepo) {
+            this.scanLogRepo = scanLogRepo;
+        }
+
+        @GetMapping
+        public List<Map<String, Object>> getAllPickups() {
+            return scanLogRepo.findAll().stream().map(log -> {
+                Map<String, Object> map = new HashMap<>();
+                map.put("guardianName", log.getGuardian() != null ? log.getGuardian().getName() : log.getGuardianNameFallback());
+                map.put("studentName", log.getStudent() != null ? log.getStudent().getName() : "-");
+                map.put("status", log.getStatus());
+                map.put("timestamp", log.getTimestamp());
+                return map;
+            }).toList();
+        }
     }
+
 }
