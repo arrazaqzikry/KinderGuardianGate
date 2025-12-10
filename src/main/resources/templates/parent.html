@@ -6,6 +6,20 @@
     <title>Parent Management</title>
     <link rel="stylesheet" href="/css/family.css">
     <script src="js/parents.js" defer></script>
+    <style>
+        body { display: flex; margin: 0; font-family: Arial, sans-serif; }
+        .main-content { flex: 1; padding: 30px; }
+        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+
+        .section-box { border: 2px solid #ccc; border-radius: 12px; padding: 20px; background: #fff; margin-bottom: 30px; }
+
+        form#addGuardianForm { display: flex; gap: 10px; margin-bottom: 20px; }
+        form#addGuardianForm input { padding: 10px; border: 1px solid #aaa; border-radius: 8px; }
+        form#addGuardianForm button { padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; }
+
+        table { width: 100%; border-collapse: collapse; background: #fff; }
+        th, td { padding: 12px; border-bottom: 1px solid #ccc; }
+    </style>
 </head>
 <body>
 <!-- Sidebar -->
@@ -31,7 +45,7 @@
     </header>
 
     <!-- Content -->
-    <section>
+    <section class="section-box">
         <h2>Manage Parents</h2>
         <p>Add, edit, or delete parent profiles, and assign children.</p>
 
