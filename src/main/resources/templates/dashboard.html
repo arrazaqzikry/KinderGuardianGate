@@ -103,5 +103,41 @@
         <div id="notification" class="notification"></div>
 
         <script src="/js/dashboard.js"></script>
+
+        <!-- NFC Tap Animation Modal -->
+        <div id="nfcAnimation" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.4); backdrop-filter:blur(4px); justify-content:center; align-items:center; z-index:9999;">
+            <div style="width:220px; height:220px; background:#fff; border-radius:20px; display:flex; flex-direction:column; justify-content:center; align-items:center; position:relative; box-shadow:0 4px 20px rgba(0,0,0,0.2); animation:popIn 0.3s ease;">
+
+                <!-- Pulsing Circle -->
+                <div class="pulse-ring" style="width:140px; height:140px; border-radius:50%; background:#e0f7ff; position:absolute; animation:pulse 1.6s infinite ease-out;"></div>
+
+                <!-- Card Icon -->
+                <div style="width:90px; height:60px; background:#4aa3ff; border-radius:10px; z-index:5; animation:cardTap 1.2s ease forwards;"></div>
+
+                <p style="margin-top:15px; font-size:18px; color:#333; z-index:5;">Scanning...</p>
+            </div>
+        </div>
+
+        <style>
+            @keyframes popIn { 0%{transform:scale(0.7); opacity:0;} 100%{transform:scale(1); opacity:1;} }
+            @keyframes pulse { 0%{transform:scale(0.7); opacity:0.7;} 70%{transform:scale(1.4); opacity:0;} 100%{opacity:0;} }
+            @keyframes cardTap { 0%{transform:translateY(-20px) rotate(-6deg);} 50%{transform:translateY(0px) rotate(0deg);} 100%{transform:translateY(0);} }
+        </style>
+
+        <script>
+            function showNFCTapAnimation() {
+                const anim = document.getElementById('nfcAnimation');
+                anim.style.display = 'flex';
+                setTimeout(() => { anim.style.display = 'none'; }, 1600);
+            }
+
+            // Inject animation into simulateScan()
+            const originalSimulateScan = simulateScan;
+            simulateScan = function() {
+                showNFCTapAnimation();
+                setTimeout(() => { originalSimulateScan(); }, 1700);
+            };
+        </script>
+
 </body>
 </html>
