@@ -13,17 +13,36 @@ public class PickupController {
         this.pickupService = pickupService;
     }
 
-    @GetMapping("/")
+    @GetMapping("/login")
     public String home() {
-        return "index";
+        return "login";
     }
 
+    @GetMapping("/register")
+    public String register() {
+        return "register";
+    }
+
+    @GetMapping("/dashboard")
+    public String dashboard() {
+        return "dashboard";
+    }
+
+    @GetMapping("/parent")
+    public String parent() {
+        return "parent";
+    }
+
+    @GetMapping("/children")
+    public String children() {
+        return "children";
+    }
     @PostMapping("/verify")
     public String verifyPickup(@RequestParam Long studentId,
                                @RequestParam String guardianIc,
                                Model model) {
         String result = pickupService.verifyPickup(studentId, guardianIc);
         model.addAttribute("result", result);
-        return "index";
+        return "main";
     }
 }

@@ -1,7 +1,7 @@
 package com.example.security.kinderguardiangate.service;
 
 import com.example.security.kinderguardiangate.model.Guardian;
-import com.example.security.kinderguardiangate.model.PickupLog;
+import com.example.security.kinderguardiangate.model.ScanLog;
 import com.example.security.kinderguardiangate.model.Student;
 import com.example.security.kinderguardiangate.repository.GuardianRepository;
 import com.example.security.kinderguardiangate.repository.PickupLogRepository;
@@ -34,7 +34,7 @@ public class PickupService {
             Guardian guardian = guardianOpt.get();
 
             if (student.getGuardians().contains(guardian)) {
-                PickupLog log = new PickupLog();
+                ScanLog log = new ScanLog();
                 log.setStudent(student);
                 log.setGuardian(guardian);
                 log.setStatus("picked up");
