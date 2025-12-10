@@ -38,7 +38,7 @@ public class ScanLog {
 
     public String getGuardianNameFallback() {
         if (guardian != null) return guardian.getName();
-        return "Unknown"; // or store IC number in another field if you want
+        return "Unknown."; // or store IC number in another field if you want
     }
 
 }
