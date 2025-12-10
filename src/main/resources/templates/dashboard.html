@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Smart ID Pickup Dashboard</title>
+    <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+<!-- Sidebar -->
+<div class="sidebar">
+    <h2>Smart ID</h2>
+    <ul>
+        <li><a href="dashboard">Dashboard</a></li>
+        <li><a href="parent">Parent Management</a></li>
+        <li><a href="children">Children Management</a></li>
+        <li><a href="scanlogs">Scan Logs</a></li>
+    </ul>
+</div>
+
+<!-- Main Content -->
+<div class="main">
+    <div class="header">
+        <h1>Pickup Dashboard</h1>
+        <div id="currentTime"></div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats">
+        <div class="stat-card">
+            <h3>Total Pickups</h3>
+            <p id="totalPickups">0</p>
+        </div>
+        <div class="stat-card">
+            <h3>Pending Pickups</h3>
+            <p id="pendingPickups">0</p>
+        </div>
+        <div class="stat-card">
+            <h3>Unauthorized Attempts</h3>
+            <p id="unauthPickups">0</p>
+        </div>
+    </div>
+
+    <!-- Pickup Table -->
+    <table>
+        <thead>
+        <tr>
+            <th>Parent Name</th>
+            <th>Child Name</th>
+            <th>Time</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody id="pickupTable"></tbody>
+    </table>
+
+    <!-- NFC Simulation Card -->
+    <div class="card">
+        <h3>Simulate NFC Scans</h3>
+        <input type="text" id="icInput" placeholder="Enter IC Number">
+        <button onclick="simulateScan()">Verify</button>
+    </div>
+
+    <!-- Children Selection Modal -->
+    <div id="childrenModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3>Select Children for Pickup</h3>
+            <div id="childrenCheckboxes"></div>
+            <button onclick="confirmPickup()">Confirm Pickup</button>
+        </div>
+    </div>
+
+
+
+
+</div>
+
+<!-- Notifications -->
+<div id="notification" class="notification"></div>
+
+<script src="/js/dashboard.js"></script>
+</body>
+</html>

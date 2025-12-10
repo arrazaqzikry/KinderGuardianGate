@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Children Management</title>
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <script src="/js/children.js" defer></script>
+</head>
+<body>
+<!-- Sidebar -->
+<aside class="sidebar">
+    <h2>Smart ID</h2>
+    <ul>
+        <li><a href="dashboard">Dashboard</a></li>
+        <li><a href="parent">Parent Management</a></li>
+        <li><a href="children">Children Management</a></li>
+        <li><a href="scanlogs.html">Scan Logs</a></li>
+    </ul>
+</aside>
+
+<!-- Main content -->
+<div class="main-content">
+    <!-- Header -->
+    <header>
+        <h1>Children Management</h1>
+        <div class="header-right">
+            <span class="notifications">🔔</span>
+            <button onclick="logout()">Logout</button>
+        </div>
+    </header>
+
+    <!-- Content -->
+    <section>
+        <h2>Manage Children</h2>
+        <p>Add, edit, or delete child profiles. Guardian assignment is managed in Parent Management.</p>
+
+        <!-- Add Student Form -->
+        <form id="addStudentForm">
+            <input type="text" id="studentName" placeholder="Name" required>
+            <input type="text" id="studentPhoto" placeholder="Photo URL">
+            <button type="submit">Add Child</button>
+        </form>
+
+        <!-- Table -->
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Photo</th>
+                <th>Guardians</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody id="studentTableBody">
+            <!-- JS will populate students here -->
+            </tbody>
+        </table>
+    </section>
+</div>
+</body>
+</html>
