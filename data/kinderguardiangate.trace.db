@@ -3545,3 +3545,5 @@ Caused by: org.h2.mvstore.MVStoreException: The file is locked: /Users/mac/Docum
 	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:286)
 	... 62 more
+2025-12-10 22:07:02.794573+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
