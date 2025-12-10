@@ -82,6 +82,20 @@ org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-22
 org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
 2025-12-10 20:16:40.562846+08:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
+2025-12-10 20:37:22.725865+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
+2025-12-10 20:37:39.139734+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
+2025-12-10 20:42:08.901147+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "PHOTO_URL CHARACTER VARYING(255)": "'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxAPEBAQDxAPDw8PEA8Q... (7395)"; SQL statement:
+insert into student (name,photo_url,id) values (?,?,default) [22001-224]
+2025-12-10 20:42:24.823078+08:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "PHOTO_URL CHARACTER VARYING(255)": "'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxAPEBAQDxAPDw8PEA8Q... (1024)"; SQL statement:
+insert into student (name,photo_url,id) values (?,?,default) [22001-224]
+2025-12-10 20:44:56.247399+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
+2025-12-10 20:45:43.748040+08:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
 2025-12-10 21:02:16.824510+08:00 database: flush
 org.h2.message.DbException: General error: "org.h2.mvstore.MVStoreException: The file is locked: /Users/mac/Documents/1.UPM THINGS/SEM 4/CSC3402 DATABASE/Lab/Lab1/KinderGuardianGate/data/kinderguardiangate.mv.db [2.2.224/7]" [50000-224]
 	at org.h2.message.DbException.get(DbException.java:212)
