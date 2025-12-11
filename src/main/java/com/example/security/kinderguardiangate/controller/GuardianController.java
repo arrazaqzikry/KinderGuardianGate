@@ -114,7 +114,6 @@ public class GuardianController {
         if (guardianOpt.isPresent()) {
             Guardian guardian = guardianOpt.get();
 
-            // --- SUCCESS LOGIC: Prepare response, DO NOT SAVE LOG HERE ---
             List<Map<String, Object>> children = guardian.getStudents().stream()
                     .map(student -> {
                         Map<String, Object> childInfo = new HashMap<>();
@@ -128,17 +127,16 @@ public class GuardianController {
             response.put("guardianName", guardian.getName());
             response.put("children", children);
 
-            // The method finishes here without saving the log
             return response;
 
         } else {
-            // --- UNAUTHORIZED LOGIC: ONLY SAVE LOGS FOR FAILURES HERE ---
+
             response.put("status", "failure");
             response.put("guardianName", "Unknown");
             response.put("children", List.of());
 
             log.setStatus("UNAUTHORIZED");
-            scanLogRepo.save(log); // ONLY save if UNAUTHORIZED
+            scanLogRepo.save(log);
 
             return response;
         }
