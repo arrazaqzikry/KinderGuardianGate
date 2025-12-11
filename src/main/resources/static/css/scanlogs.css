@@ -102,6 +102,7 @@ th {
 /* Status Colors */
 tr.authorized { background-color: #d4edda; color: #155724; }
 tr.unauthorized { background-color: #f8d7da; color: #721c24; }
+tr.absent { background-color: #f5f59d; color: #8c6803; }
 
 /* Cards */
 .card {
