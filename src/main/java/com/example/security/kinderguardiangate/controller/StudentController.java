@@ -1,7 +1,11 @@
 package com.example.security.kinderguardiangate.controller;
 
 import com.example.security.kinderguardiangate.DTO.StudentDTO;
+import com.example.security.kinderguardiangate.model.Attendance;
+import com.example.security.kinderguardiangate.model.Guardian;
+import com.example.security.kinderguardiangate.model.ScanLog;
 import com.example.security.kinderguardiangate.model.Student;
+import com.example.security.kinderguardiangate.repository.AttendanceRepository;
 import com.example.security.kinderguardiangate.repository.StudentRepository;
 import com.example.security.kinderguardiangate.repository.ScanLogRepository;
 import jakarta.transaction.Transactional;
@@ -40,25 +44,33 @@ public class StudentController {
         return studentRepo.save(student);
     }
 
-    // Safe delete method
+    @Autowired
+    private AttendanceRepository attendanceRepo;
+
     @Transactional
     @DeleteMapping("/{id}")
     public void deleteStudent(@PathVariable Long id) {
         Student student = studentRepo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Student not found with id " + id));
 
-        // 1️⃣ Detach from all guardians
+        // Delete related attendance records
+        attendanceRepo.deleteByStudentId(student.getId());
+
+        // Delete related scan logs
+        scanLogRepo.deleteByStudentId(student.getId());
+
+        // Detach from guardians
         if (student.getGuardians() != null) {
-            student.getGuardians().forEach(g -> g.getStudents().remove(student));
+            for (Guardian guardian : student.getGuardians()) {
+                guardian.getStudents().remove(student);
+            }
             student.getGuardians().clear();
         }
 
-        // 2️⃣ Detach from all scan logs (if scan logs reference student)
-        scanLogRepo.findByStudentId(student.getId())
-                .forEach(sl -> sl.setStudent(null));
-        scanLogRepo.flush();
-
-        // 3️⃣ Delete student
+        // Finally delete student
         studentRepo.delete(student);
     }
+
+
+
 }

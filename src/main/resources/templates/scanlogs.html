@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>KinderGuardian</title>
+    <title>Smart ID Pickup Dashboard</title>
     <link rel="stylesheet" href="/css/scanlogs.css">
     <style>
         body { font-family: Arial, sans-serif; margin: 0; display: flex; }
@@ -28,43 +28,15 @@
         .stats { margin-bottom: 0; }
         .pickup-table-box { margin-top: 25px; }
         .card { margin-top: 25px; }
-         .header button {
-        background-color: #333; /* Dark grey */
-        color: #fff;
-        border: none;
-        padding: 8px 16px;
-        border-radius: 8px;
-        cursor: pointer;
-        font-weight: 500;
-        transition: background 0.3s;
-    }
-    .header button:hover {
-        background-color: #555;
-    }
-
-    /* Nicer blue Verify button */
-    .card button {
-        background-color: #4aa3ff; /* Blue */
-        color: #fff;
-        border: none;
-        padding: 10px 18px;
-        border-radius: 8px;
-        cursor: pointer;
-        font-weight: 500;
-        transition: background 0.3s, transform 0.2s;
-    }
-    .card button:hover {
-        background-color: #3578e5;
-        transform: translateY(-2px);
     </style>
 </head>
 <body>
 <!-- Sidebar -->
 <div class="sidebar">
-    <h2>KinderGuardian</h2>
+    <h2>Smart ID</h2>
     <ul>
         <li><a href="dashboard">Dashboard</a></li>
-        <li><a href="guardian">Guardian Management</a></li>
+        <li><a href="parent">Parent Management</a></li>
         <li><a href="children">Children Management</a></li>
         <li><a href="scanlogs">Scan Logs</a></li>
     </ul>
@@ -81,14 +53,8 @@
     <!-- Stats -->
     <div class="section-box">
         <div class="stats">
-            <div class="stat-card">
-                <h3>Total Pickups</h3>
-                <p id="totalPickups">0</p>
-            </div>
-            <div class="stat-card">
-                <h3>Pending Pickups</h3>
-                <p id="pendingPickups">0</p>
-            </div>
+
+
             <div class="stat-card">
                 <h3>Unauthorized Attempts</h3>
                 <p id="unauthPickups">0</p>
@@ -100,8 +66,8 @@
             <table>
                 <thead>
                 <tr>
-                    <th>Guardian Name</th>
-                    <th>Guardian IC</th>
+                    <th>Parent Name</th>
+                    <th>Parent IC</th>
                     <th>Child Name</th>
                     <th>Time</th>
                     <th>Status</th>
@@ -170,6 +136,5 @@
             };
         </script>
 
-    </div> <!-- Closing main div -->
 </body>
 </html>

@@ -9,4 +9,6 @@ import java.util.List;
 public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
     Optional<Attendance> findByStudentIdAndAttendanceDate(Long studentId, LocalDate attendanceDate);
     List<Attendance> findByAttendanceDate(LocalDate attendanceDate);
+    void deleteByStudentId(Long studentId);  // <-- Add this
+    List<Attendance> findByStudent_Id(Long studentId);
 }
